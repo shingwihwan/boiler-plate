@@ -4,10 +4,10 @@ const port = 5000
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 
-const config = require('./config/key')
+const config = require('./server/config/key')
 
-const { auth } = require('./middleware/auth')
-const { User } = require('./models/User')
+const { auth } = require('./server/middleware/auth')
+const { User } = require('./server/models/User')
 
 // application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -36,6 +36,10 @@ app.post('/api/users/register', (req, res) => {
         })
     });
 });
+
+app.get('/api/hello', (req, res) => {
+    res.send("안녕하시와요")
+})
 
 app.post('/api/users/login', (req, res) => {
     //요청된 이메일을 데이터베이스에서 있는지 찾는다
